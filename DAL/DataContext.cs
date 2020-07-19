@@ -12,6 +12,7 @@ namespace DAL
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<SaleHeader> Sales { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -19,6 +20,8 @@ namespace DAL
             builder.ApplyConfiguration(new SupplierConfiguration());
             builder.ApplyConfiguration(new ProductConfiguration());
             builder.ApplyConfiguration(new ProductLanguageConfiguration());
+            builder.ApplyConfiguration(new SaleHeaderConfiguration());
+            builder.ApplyConfiguration(new SaleLineConfiguration());
         }
     }
 }

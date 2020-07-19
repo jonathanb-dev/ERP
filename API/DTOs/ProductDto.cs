@@ -6,6 +6,6 @@ namespace API.DTOs
     {
         public int Id { get; set; }
         public decimal Price { get; set; }
-        public List<ProductLanguageForProductDto> ProductLanguages { get; set; }
+        public ICollection<ProductLanguageForProductDto> ProductLanguages { get; set; }
     }
 }
