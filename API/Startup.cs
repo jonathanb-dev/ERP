@@ -1,6 +1,8 @@
 using AutoMapper;
 using BLL.Services;
 using DAL;
+using DAL.Repositories;
+using DL.Repositories;
 using DL.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,7 +31,14 @@ namespace API
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
             services.AddAutoMapper(typeof(Startup));
+
+            // Repositories
+            services.AddScoped<IProductRepository, ProductRepository>();
+
+            // Services
             services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ISupplierService, SupplierService>();
+            services.AddScoped<IProductService, ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

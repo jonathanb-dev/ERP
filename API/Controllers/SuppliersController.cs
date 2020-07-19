@@ -23,7 +23,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<SupplierDto>> GetCustomer()
+        public async Task<ActionResult<IEnumerable<SupplierDto>>> GetSuppliers()
         {
             IEnumerable<Supplier> suppliers = await _supplierService.ListAsync();
 
@@ -33,7 +33,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<SupplierDto>> GetCustomer(int id)
+        public async Task<ActionResult<SupplierDto>> GetSupplier(int id)
         {
             Supplier supplier = await _supplierService.GetAsync(id);
 

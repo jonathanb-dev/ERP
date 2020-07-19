@@ -8,7 +8,9 @@ namespace DAL.Configurations
     {
         public void Configure(EntityTypeBuilder<Supplier> builder)
         {
-            builder.Property(x => x.Name).HasColumnType("NVARCHAR").HasMaxLength(200);
+            builder.Property(x => x.Name)
+                .HasColumnType("NVARCHAR(200)")
+                .IsRequired();
         }
     }
 }

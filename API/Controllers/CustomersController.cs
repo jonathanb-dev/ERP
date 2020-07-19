@@ -23,7 +23,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<CustomerDto>> GetCustomer()
+        public async Task<ActionResult<IEnumerable<CustomerDto>>> GetCustomers()
         {
             IEnumerable<Customer> customers = await _customerService.ListAsync();
 
