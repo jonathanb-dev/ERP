@@ -1,6 +1,8 @@
-﻿using DAL;
+﻿using BLL.Exceptions;
+using DAL;
 using DL.Entities;
 using DL.Services;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace BLL.Services
@@ -23,7 +25,12 @@ namespace BLL.Services
 
         public async Task<SaleHeader> GetAsync(int id)
         {
-            return await _context.Sales.FindAsync(id);
+            SaleHeader saleHeader = await _context.Sales.FindAsync(id);
+
+            if (saleHeader == null)
+                throw new RestException(HttpStatusCode.NotFound, new { sale = "Not found" });
+
+            return saleHeader;
         }
     }
 }
