@@ -7,5 +7,6 @@ namespace DL.Entities
         public int Id { get; set; }
         public decimal Price { get; set; }
         public ICollection<ProductLanguage> ProductLanguages { get; set; }
+        public ICollection<SaleLine> SaleLines { get; set; }
     }
 }

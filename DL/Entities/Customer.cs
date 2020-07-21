@@ -1,4 +1,6 @@
-﻿namespace DL.Entities
+﻿using System.Collections.Generic;
+
+namespace DL.Entities
 {
     public class Customer
     {
@@ -6,5 +8,6 @@
         public string Name { get; set; }
         public int? LanguageId { get; set; }
         public Language Language { get; set; }
+        public ICollection<SaleHeader> Sales { get; set; }
     }
 }

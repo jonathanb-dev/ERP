@@ -6,5 +6,6 @@ namespace DL.Services
     public interface ISaleService
     {
         Task<SaleHeader> GetAsync(int id);
+        void Create(SaleHeader saleHeader);
     }
 }

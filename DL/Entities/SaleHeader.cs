@@ -5,6 +5,7 @@ namespace DL.Entities
     public class SaleHeader
     {
         public int Id { get; set; }
+        public int CustomerId { get; set; }
         public Customer Customer { get; set; }
         public decimal TotalVatExcluded { get; set; }
         public decimal TotalVatIncluded { get; set; }

@@ -22,13 +22,23 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<CustomerDto>> GetCustomer(int id)
+        public async Task<ActionResult<SaleHeaderDto>> GetSale(int id)
         {
             SaleHeader saleHeader = await _saleService.GetAsync(id);
 
             SaleHeaderDto result = _mapper.Map<SaleHeaderDto>(saleHeader);
 
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<SaleHeaderDto>> PostSale(PostSaleHeaderDto postSaleHeaderDto)
+        {
+            SaleHeader result = _mapper.Map<SaleHeader>(postSaleHeaderDto);
+
+            _saleService.Create(result);
+
+            return CreatedAtAction(nameof(GetSale), new { id = result.Id }, _mapper.Map<SaleHeaderDto>(result));
         }
     }
 }
