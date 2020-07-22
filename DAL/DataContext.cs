@@ -1,10 +1,11 @@
 ﻿using DAL.Configurations;
 using DL.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<AppUser, AppRole, int>
     {
         public DataContext(DbContextOptions options) : base(options) { }
 
@@ -16,6 +17,9 @@ namespace DAL
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
+
+            builder.ApplyConfiguration(new AppUserConfiguration());
             builder.ApplyConfiguration(new CustomerConfiguration());
             builder.ApplyConfiguration(new SupplierConfiguration());
             builder.ApplyConfiguration(new ProductConfiguration());
