@@ -1,13 +1,27 @@
 ﻿using DL.Entities;
+using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DAL
 {
     public static class Seed
     {
-        public static void SeedData(DataContext context)
+        public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
+            if (!userManager.Users.Any())
+            {
+                AppUser user = new AppUser()
+                {
+                    UserName = "test",
+                    Email = "contact@erp.com",
+                    DisplayName = "Default user"
+                };
+
+                await userManager.CreateAsync(user, "P4$$w0rd");
+            }
+
             List<Language> Languages = new List<Language>
             {
                 new Language { IsoCode2 = "fr" },
