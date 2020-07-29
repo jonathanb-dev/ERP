@@ -26,7 +26,7 @@ namespace API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(PostLoginDto postLoginDto)
         {
-            LoginResponse loginResponse = await _authService.Login(postLoginDto.UserName, postLoginDto.Password);
+            LoginResponse loginResponse = await _authService.Login(postLoginDto.Email, postLoginDto.Password);
 
             UserDto result = _mapper.Map<UserDto>(loginResponse.AppUser);
 

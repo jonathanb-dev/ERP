@@ -16,9 +16,9 @@ namespace BLL.Services
             _userManager = userManager;
         }
 
-        public async Task<AppUser> GetUserByNameAsync(string name)
+        public async Task<AppUser> GetUserByEmailAsync(string email)
         {
-            AppUser appUser = await _userManager.FindByNameAsync(name);
+            AppUser appUser = await _userManager.FindByEmailAsync(email);
 
             if (appUser == null)
                 throw new RestException(HttpStatusCode.NotFound, new { user = "Not found" });

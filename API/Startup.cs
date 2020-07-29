@@ -42,6 +42,8 @@ namespace API
                 options.Filters.Add(new AuthorizeFilter(policy));
             });
 
+            services.AddCors();
+
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
@@ -94,6 +96,8 @@ namespace API
             }
 
             app.UseRouting();
+
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseAuthentication();
             app.UseAuthorization();

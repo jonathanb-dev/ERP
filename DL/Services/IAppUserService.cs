@@ -5,6 +5,6 @@ namespace DL.Services
 {
     public interface IAppUserService
     {
-        Task<AppUser> GetUserByNameAsync(string name);
+        Task<AppUser> GetUserByEmailAsync(string email);
     }
 }

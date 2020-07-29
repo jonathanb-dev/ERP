@@ -27,9 +27,9 @@ namespace BLL.Services
             _configuration = configuration;
         }
 
-        public async Task<LoginResponse> Login(string userName, string password, bool isPersistent, bool lockoutOnFailure)
+        public async Task<LoginResponse> Login(string email, string password, bool lockoutOnFailure)
         {
-            AppUser appUser = await _appUserService.GetUserByNameAsync(userName);
+            AppUser appUser = await _appUserService.GetUserByEmailAsync(email);
 
             SignInResult result = await _signInManager.CheckPasswordSignInAsync(appUser, password, lockoutOnFailure);
 
