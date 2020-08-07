@@ -1,7 +1,8 @@
 ﻿using DL.Entities;
+using DL.Models;
+using DL.Parameters;
 using DL.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,11 +17,12 @@ namespace DAL.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Product>> GetProductsWithTranslationsAsync()
+        public async Task<PagedList<Product>> GetProductsWithTranslationsAsync(ProductParameters parameters)
         {
-            return await _context.Products.Include(x => x.ProductLanguages)
-                .ThenInclude(x => x.Language)
-                .ToListAsync();
+            var products = _context.Products.Include(x => x.ProductLanguages)
+                .ThenInclude(x => x.Language);
+
+            return await PagedList<Product>.CreateAsync(products, parameters.PageNumber, parameters.ItemsPerPage);
         }
 
         public async Task<Product> GetProductWithTranslationsAsync(int id)

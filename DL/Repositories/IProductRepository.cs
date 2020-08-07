@@ -1,12 +1,13 @@
 ﻿using DL.Entities;
-using System.Collections.Generic;
+using DL.Models;
+using DL.Parameters;
 using System.Threading.Tasks;
 
 namespace DL.Repositories
 {
     public interface IProductRepository
     {
-        Task<IEnumerable<Product>> GetProductsWithTranslationsAsync();
+        Task<PagedList<Product>> GetProductsWithTranslationsAsync(ProductParameters parameters);
         Task<Product> GetProductWithTranslationsAsync(int id);
     }
 }

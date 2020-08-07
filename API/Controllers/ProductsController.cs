@@ -1,6 +1,9 @@
 ﻿using API.DTOs;
+using API.Helpers;
 using AutoMapper;
 using DL.Entities;
+using DL.Models;
+using DL.Parameters;
 using DL.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -23,11 +26,13 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductDto>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetProducts([FromQuery]ProductParameters parameters)
         {
-            IEnumerable<Product> products = await _productService.GetProductsWithTranslationsAsync();
+            PagedList<Product> products = await _productService.GetProductsWithTranslationsAsync(parameters);
 
             IEnumerable<ProductDto> result = _mapper.Map<IEnumerable<ProductDto>>(products);
+
+            Response.AddPagination(products.CurrentPage, products.TotalPages, products.ItemsPerPage, products.TotalCount);
 
             return Ok(result);
         }

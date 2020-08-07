@@ -1,9 +1,10 @@
 ﻿using BLL.Exceptions;
 using DAL;
 using DL.Entities;
+using DL.Models;
+using DL.Parameters;
 using DL.Repositories;
 using DL.Services;
-using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -20,9 +21,9 @@ namespace BLL.Services
             _productRepository = productRepository;
         }
 
-        public async Task<IEnumerable<Product>> GetProductsWithTranslationsAsync()
+        public async Task<PagedList<Product>> GetProductsWithTranslationsAsync(ProductParameters parameters)
         {
-            return await _productRepository.GetProductsWithTranslationsAsync();
+            return await _productRepository.GetProductsWithTranslationsAsync(parameters);
         }
 
         public async Task<Product> GetProductWithTranslationsAsync(int id)
