@@ -23,6 +23,19 @@ namespace DAL.Repositories
                 .ThenInclude(x => x.Language)
                 .Where(x => x.Price >= parameters.MinPrice && x.Price <= parameters.MaxPrice);
 
+            if (!string.IsNullOrWhiteSpace(parameters.OrderBy))
+            {
+                switch (parameters.OrderBy)
+                {
+                    case "priceAsc":
+                        products = products.OrderBy(x => x.Price);
+                        break;
+                    case "priceDesc":
+                        products = products.OrderByDescending(x => x.Price);
+                        break;
+                }
+            }
+
             return await PagedList<Product>.CreateAsync(products, parameters.PageNumber, parameters.ItemsPerPage);
         }
 

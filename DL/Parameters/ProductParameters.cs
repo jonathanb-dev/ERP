@@ -9,6 +9,7 @@
         private int _itemsPerPage = MinItemsPerPage;
         private decimal _minPrice { get; set; }
         private decimal _maxPrice { get; set; } = decimal.MaxValue;
+        public string OrderBy { get; set; }
 
         public int ItemsPerPage
         {
