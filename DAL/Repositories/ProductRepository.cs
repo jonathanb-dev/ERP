@@ -20,7 +20,8 @@ namespace DAL.Repositories
         public async Task<PagedList<Product>> GetProductsWithTranslationsAsync(ProductParameters parameters)
         {
             var products = _context.Products.Include(x => x.ProductLanguages)
-                .ThenInclude(x => x.Language);
+                .ThenInclude(x => x.Language)
+                .Where(x => x.Price >= parameters.MinPrice && x.Price <= parameters.MaxPrice);
 
             return await PagedList<Product>.CreateAsync(products, parameters.PageNumber, parameters.ItemsPerPage);
         }

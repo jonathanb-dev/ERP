@@ -7,6 +7,8 @@
 
         public int PageNumber { get; set; } = 1;
         private int _itemsPerPage = MinItemsPerPage;
+        private decimal _minPrice { get; set; }
+        private decimal _maxPrice { get; set; } = decimal.MaxValue;
 
         public int ItemsPerPage
         {
@@ -24,6 +26,38 @@
                 else
                 {
                     _itemsPerPage = value;
+                }
+            }
+        }
+
+        public decimal MinPrice
+        {
+            get { return _minPrice; }
+            set
+            {
+                if (value < 0 || value > _maxPrice)
+                {
+                    _minPrice = 0M;
+                }
+                else
+                {
+                    _minPrice = value;
+                }
+            }
+        }
+
+        public decimal MaxPrice
+        {
+            get { return _maxPrice; }
+            set
+            {
+                if (value < 0 || value < _minPrice)
+                {
+                    _maxPrice = decimal.MaxValue;
+                }
+                else
+                {
+                    _maxPrice = value;
                 }
             }
         }
