@@ -10,9 +10,11 @@ namespace API.Profiles
         {
             // Entity to DTO
             CreateMap<ProductLanguage, ProductLanguageForProductDto>();
+            CreateMap<ProductLanguage, PostProductLanguageForProductDto>();
 
             // DTO to Entity
             CreateMap<ProductLanguageForProductDto, ProductLanguage>();
+            CreateMap<PostProductLanguageForProductDto, ProductLanguage>();
         }
     }
 }

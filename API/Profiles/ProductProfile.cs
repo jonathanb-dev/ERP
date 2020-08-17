@@ -10,9 +10,13 @@ namespace API.Profiles
         {
             // Entity to DTO
             CreateMap<Product, ProductDto>();
+            CreateMap<Product, PostProductDto>();
+            CreateMap<Product, PutAndPatchProductDto>();
 
             // DTO to Entity
             CreateMap<ProductDto, Product>();
+            CreateMap<PostProductDto, Product>();
+            CreateMap<PutAndPatchProductDto, Product>();
         }
     }
 }

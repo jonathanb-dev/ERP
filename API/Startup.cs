@@ -33,14 +33,16 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers(options =>
+            /*services.AddControllers(options =>
             {
                 AuthorizationPolicy policy = new AuthorizationPolicyBuilder()
                     .RequireAuthenticatedUser()
                     .Build();
 
                 options.Filters.Add(new AuthorizeFilter(policy));
-            });
+            });*/
+
+            services.AddControllers();
 
             services.AddCors();
 
@@ -79,6 +81,7 @@ namespace API
             // Services
             services.AddScoped<IAppUserService, AppUserService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ILanguageService, LanguageService>();
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<ISupplierService, SupplierService>();
             services.AddScoped<IProductService, ProductService>();
